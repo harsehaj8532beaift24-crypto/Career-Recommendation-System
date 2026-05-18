@@ -73,6 +73,13 @@ def Recommendations(gender, part_time_job, absence_days, extracurricular_activit
 def home():
     return render_template('home.html')
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # Simply redirect to assessment or simulate login for now
+        return render_template('recommend.html')
+    return render_template('login.html')
+
 
 @app.route('/recommend')
 def recommend():

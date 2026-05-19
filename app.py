@@ -4,7 +4,7 @@
 # pip install flask
 
 # ================= IMPORT PACKAGES =================
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import pickle
 import numpy as np
 
@@ -75,10 +75,18 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
     if request.method == 'POST':
-        # Simply redirect to assessment or simulate login for now
-        return render_template('recommend.html')
-    return render_template('login.html')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        
+        # Accept any provided email and password
+        if email and password:
+            return redirect(url_for('recommend'))
+        else:
+            error = 'Please provide both email and password'
+            
+    return render_template('login.html', error=error)
 
 
 @app.route('/recommend')

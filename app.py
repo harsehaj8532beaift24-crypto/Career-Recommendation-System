@@ -59,8 +59,8 @@ def Recommendations(gender, part_time_job, absence_days, extracurricular_activit
     # Predict probabilities
     probabilities = model.predict_proba(scaled_features)
 
-    # Get top 5 predictions
-    top_indices = np.argsort(-probabilities[0])[:5]
+    # Get top 3 predictions
+    top_indices = np.argsort(-probabilities[0])[:3]
 
     results = [(class_names[i], round(probabilities[0][i] * 100, 2)) for i in top_indices]
 
